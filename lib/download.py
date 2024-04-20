@@ -1,6 +1,6 @@
 import os
 import csv
-import requests
+from security import safe_requests
 
 dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -10,7 +10,7 @@ sources_list = os.path.join(dir, '../sources.csv')
 # Downloads the file from a given URL, to the local destination
 def download(url: str, filename: str):
     file_path = os.path.join(destination_dir, filename)
-    r = requests.get(url, stream=True)
+    r = safe_requests.get(url, stream=True)
     if r.ok:
         print('saving to', os.path.abspath(file_path))
         with open(file_path, 'wb') as f:
