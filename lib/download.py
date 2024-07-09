@@ -10,7 +10,7 @@ sources_list = os.path.join(dir, '../sources.csv')
 # Downloads the file from a given URL, to the local destination
 def download(url: str, filename: str):
     file_path = os.path.join(destination_dir, filename)
-    r = requests.get(url, stream=True)
+    r = requests.get(url, stream=True, timeout=60)
     if r.ok:
         print('saving to', os.path.abspath(file_path))
         with open(file_path, 'wb') as f:
