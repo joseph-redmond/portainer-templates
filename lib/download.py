@@ -1,7 +1,7 @@
 import os
 import csv
-import requests
 import json
+from security import safe_requests
 
 dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -12,7 +12,7 @@ sources_list = os.path.join(dir, '../sources.csv')
 def download(url: str, filename: str, maintainer: str):
     file_path = os.path.join(destination_dir, filename)
     print('Downloading', url)
-    r = requests.get(url, stream=True)
+    r = safe_requests.get(url, stream=True)
     if r.ok:
         print('saving to', os.path.abspath(file_path))
         with open(file_path, 'wb') as f:
