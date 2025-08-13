@@ -1,2 +1,3 @@
 requests
 jsonschema
+security==1.3.1
